@@ -1,0 +1,80 @@
+PGDMP          &    	    
+         t            Projet_Chat    9.4.1    9.4.1     Ü           0    0    ENCODING    ENCODING        SET client_encoding = 'UTF8';
+                       false            Ý           0    0 
+   STDSTRINGS 
+   STDSTRINGS     (   SET standard_conforming_strings = 'on';
+                       false            Þ           1262    82637    Projet_Chat    DATABASE        CREATE DATABASE "Projet_Chat" WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'French_France.1252' LC_CTYPE = 'French_France.1252';
+    DROP DATABASE "Projet_Chat";
+             postgres    false                        2615    2200    public    SCHEMA        CREATE SCHEMA public;
+    DROP SCHEMA public;
+             postgres    false            ß           0    0 
+   SCHEMA public    COMMENT     6   COMMENT ON SCHEMA public IS 'standard public schema';
+                  postgres    false    5            à           0    0    public    ACL     ¢   REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+                  postgres    false    5            °            3079    11855    plpgsql 	   EXTENSION     ?   CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+    DROP EXTENSION plpgsql;
+                  false            á           0    0    EXTENSION plpgsql    COMMENT     @   COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+                       false    176            ¯            1259    82651    messages    TABLE     £   CREATE TABLE messages (
+    id_message integer NOT NULL,
+    contenu text,
+    id_emetteur integer,
+    id_recepteur integer,
+    date_time time with time zone
+);
+    DROP TABLE public.messages;
+       public         postgres    false    5            ®            1259    82649    messages_id_message_seq    SEQUENCE     y   CREATE SEQUENCE messages_id_message_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ .   DROP SEQUENCE public.messages_id_message_seq;
+       public       postgres    false    5    175            â           0    0    messages_id_message_seq    SEQUENCE OWNED BY     E   ALTER SEQUENCE messages_id_message_seq OWNED BY messages.id_message;
+            public       postgres    false    174            ­            1259    82640    utilisateurs    TABLE     •   CREATE TABLE utilisateurs (
+    id_user integer NOT NULL,
+    login_user character varying,
+    mdp_user character varying,
+    etat_user boolean
+);
+     DROP TABLE public.utilisateurs;
+       public         postgres    false    5            ¬            1259    82638    utilisateurs_id_user_seq    SEQUENCE     z   CREATE SEQUENCE utilisateurs_id_user_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ /   DROP SEQUENCE public.utilisateurs_id_user_seq;
+       public       postgres    false    173    5            ã           0    0    utilisateurs_id_user_seq    SEQUENCE OWNED BY     G   ALTER SEQUENCE utilisateurs_id_user_seq OWNED BY utilisateurs.id_user;
+            public       postgres    false    172            b           2604    82654 
+   id_message    DEFAULT     l   ALTER TABLE ONLY messages ALTER COLUMN id_message SET DEFAULT nextval('messages_id_message_seq'::regclass);
+ B   ALTER TABLE public.messages ALTER COLUMN id_message DROP DEFAULT;
+       public       postgres    false    174    175    175            a           2604    82643    id_user    DEFAULT     n   ALTER TABLE ONLY utilisateurs ALTER COLUMN id_user SET DEFAULT nextval('utilisateurs_id_user_seq'::regclass);
+ C   ALTER TABLE public.utilisateurs ALTER COLUMN id_user DROP DEFAULT;
+       public       postgres    false    173    172    173            Ù          0    82651    messages 
+   TABLE DATA               V   COPY messages (id_message, contenu, id_emetteur, id_recepteur, date_time) FROM stdin;
+    public       postgres    false    175   ¤       ä           0    0    messages_id_message_seq    SEQUENCE SET     >   SELECT pg_catalog.setval('messages_id_message_seq', 3, true);
+            public       postgres    false    174            ×          0    82640    utilisateurs 
+   TABLE DATA               I   COPY utilisateurs (id_user, login_user, mdp_user, etat_user) FROM stdin;
+    public       postgres    false    173   â       å           0    0    utilisateurs_id_user_seq    SEQUENCE SET     @   SELECT pg_catalog.setval('utilisateurs_id_user_seq', 1, false);
+            public       postgres    false    172            f           2606    82659 
+   messages_pkey 
+   CONSTRAINT     U   ALTER TABLE ONLY messages
+    ADD CONSTRAINT messages_pkey PRIMARY KEY (id_message);
+ @   ALTER TABLE ONLY public.messages DROP CONSTRAINT messages_pkey;
+       public         postgres    false    175    175            d           2606    82648    utilisateurs_pkey 
+   CONSTRAINT     Z   ALTER TABLE ONLY utilisateurs
+    ADD CONSTRAINT utilisateurs_pkey PRIMARY KEY (id_user);
+ H   ALTER TABLE ONLY public.utilisateurs DROP CONSTRAINT utilisateurs_pkey;
+       public         postgres    false    173    173            g           2606    82660    messages_id_emetteur_fkey 
+   FK CONSTRAINT     ƒ   ALTER TABLE ONLY messages
+    ADD CONSTRAINT messages_id_emetteur_fkey FOREIGN KEY (id_emetteur) REFERENCES utilisateurs(id_user);
+ L   ALTER TABLE ONLY public.messages DROP CONSTRAINT messages_id_emetteur_fkey;
+       public       postgres    false    173    175    1892            h           2606    82665    messages_id_recepteur_fkey 
+   FK CONSTRAINT     …   ALTER TABLE ONLY messages
+    ADD CONSTRAINT messages_id_recepteur_fkey FOREIGN KEY (id_recepteur) REFERENCES utilisateurs(id_user);
+ M   ALTER TABLE ONLY public.messages DROP CONSTRAINT messages_id_recepteur_fkey;
+       public       postgres    false    1892    175    173            Ù   .   xœ3äŒtuttôPðqUq
+á4ä4â42´22°20Ò60äŠÑãââ EL      ×   "   xœ3äq
+1~\Fœ%Eù99P(£ÇÅÅ ¸t	„     
